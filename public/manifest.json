@@ -1,0 +1,7 @@
+{
+    "name": "BestPractice",
+    "short_name": "bp",
+    "lang": "de-DE",
+    "start_url": "/",
+    "display": "standalone"
+}
