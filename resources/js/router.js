@@ -13,21 +13,21 @@ const routes = [
     name: "Register",
     component: () => import("@/pages/Auth/Register.vue"),
   },
-  // {
-  //   path: "/forgot-password",
-  //   name: "ForgotPassword",
-  //   component: () => import("../components/ForgotPassword.vue"),
-  // },
-  // {
-  //   path: "/password-reset/:token",
-  //   name: "ResetPassword",
-  //   component: () => import("../components/ResetPassword.vue"),
-  // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: '404',
-  //   component: () => import('@/pages/NotFound.vue'),
-  // }
+  {
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    component: () => import("@/pages/Auth/ForgotPassword.vue"),
+  },
+  {
+    path: "/password-reset/:token",
+    name: "ResetPassword",
+    component: () => import("@/pages/Auth/ResetPassword.vue"),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: () => import('@/pages/NotFound.vue'),
+  }
 ];
 
 const router = createRouter({

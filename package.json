@@ -10,11 +10,10 @@
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.0",
         "pinia": "^2.1.7",
+        "sass": "^1.84.0",
+        "sass-loader": "^16.0.4",
         "vite": "^5.0",
         "vue": "^3.3.13",
         "vue-router": "^4.2.5"
-    },
-    "dependencies": {
-
     }
 }
