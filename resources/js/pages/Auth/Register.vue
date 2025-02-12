@@ -13,7 +13,7 @@ const form = ref({
 </script>
 <template>
   <!-- ====== Forms Section Start -->
-  <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
+  <section class="py-20 lg:py-[120px]">
     <div class="container mx-auto">
       <div class="-mx-4 flex flex-wrap">
         <div class="w-full px-4">
@@ -24,7 +24,7 @@ const form = ref({
               max-w-[525px]
               overflow-hidden
               rounded-lg
-              bg-white
+              dark:bg-gray-800
               py-16
               px-10
               text-center
@@ -32,7 +32,7 @@ const form = ref({
               md:px-[60px]
             "
           >
-            <div class="mb-10 text-center md:mb-16">Laraveller</div>
+            <div class="mb-10 text-white text-center md:mb-10">Register</div>
             <form @submit.prevent="authStore.handleRegister(form)">
               <div class="mb-6">
                 <input
@@ -44,7 +44,7 @@ const form = ref({
                     w-full
                     rounded-md
                     border
-                    bg-[#FCFDFE]
+                    dark:bg-gray-700
                     py-3
                     px-5
                     text-base text-body-color
@@ -70,7 +70,7 @@ const form = ref({
                     w-full
                     rounded-md
                     border
-                    bg-[#FCFDFE]
+                    dark:bg-gray-700
                     py-3
                     px-5
                     text-base text-body-color
@@ -96,7 +96,7 @@ const form = ref({
                     w-full
                     rounded-md
                     border
-                    bg-[#FCFDFE]
+                    dark:bg-gray-700
                     py-3
                     px-5
                     text-base text-body-color
@@ -122,7 +122,7 @@ const form = ref({
                     w-full
                     rounded-md
                     border
-                    bg-[#FCFDFE]
+                    dark:bg-gray-700
                     py-3
                     px-5
                     text-base text-body-color
