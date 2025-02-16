@@ -22,7 +22,7 @@ const authStore = useAuthStore();
             </div>
         </div>
     </header> -->
-<header class="w-full">
+<!-- <header class="w-full">
   <nav class="border-gray-200 bg-gray-900 py-2.5">
     <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-4">
       <a href="#" class="flex items-center"><span class="self-center text-xl font-semibold whitespace-nowrap text-white">Issue Tracker</span></a>
@@ -40,7 +40,7 @@ const authStore = useAuthStore();
       </div>
     </div>
   </nav>
-</header>
+</header> -->
 </template>
 
 <style>
