@@ -24,25 +24,25 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $data = new Role();
-        $data->name = 'Admin';
-        $data->slug = config('products.role');
-        $data->save();
+        // $data = new Role();
+        // $data->name = 'Admin';
+        // $data->slug = config('products.role');
+        // $data->save();
 
-        $data = new Permission();
-        $data->name = 'Create Products';
-        $data->slug = 'create-products';
-        $data->save();
+        // $data = new Permission();
+        // $data->name = 'Create Products';
+        // $data->slug = 'create-products';
+        // $data->save();
 
-        $developer = Role::where('slug',config('products.role'))->first();
-        $createProds = Permission::where('slug','create-products')->first();
+        // $developer = Role::where('slug',config('products.role'))->first();
+        // $createProds = Permission::where('slug','create-products')->first();
 
-        $user1 = new User();
-        $user1->name = 'test';
-        $user1->email = 'testadmin@test.com';
-        $user1->password = bcrypt('secret');
-        $user1->save();
-        $user1->roles()->attach($developer);
-        // $user1->permissions()->attach($createProds);
+        // $user1 = new User();
+        // $user1->name = 'test';
+        // $user1->email = 'testadmin@test.com';
+        // $user1->password = bcrypt('secret');
+        // $user1->save();
+        // $user1->roles()->attach($developer);
+        // // $user1->permissions()->attach($createProds);
     }
 }

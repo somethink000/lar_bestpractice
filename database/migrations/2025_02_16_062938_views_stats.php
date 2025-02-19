@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('views_stats', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->string('key');
             $table->bigInteger('views')->default(0);
             $table->timestamps();
         });

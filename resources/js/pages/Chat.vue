@@ -1,12 +1,28 @@
 <script setup>
 import { onMounted } from "vue";
 import { useAuthStore } from "@/stores/auth";
+import { usePostsStore } from "@/stores/posts";
+
 
 const authStore = useAuthStore();
+const postsStore = usePostsStore();
+
+
+
+    
+    
+
 
 onMounted(async () => {
-  await authStore.getUser();
+
+    await postsStore.get();
+
+    await authStore.getUser();
+  
 });
+
+
+
 
 </script>
 
@@ -28,17 +44,21 @@ onMounted(async () => {
                         <p class="text-sm text-gray-600">Location: Russia</p>
                     </div>
                 </div>
-                <div class="my-3 flex items-center justify-between text-sm">
+                
+                <!-- Summary -->
+                <hr class="my-4">
+
+                <div class=" flex items-center justify-between text-sm">
                   <div>
                       Download pdf
                   </div>
                   <div class="flex row">
-                    <div class="flex row items-center mx-4"><img width="24" src="images/eye.png" alt="">: 1</div>
-                    <div class="flex row items-center"><img width="24" src="images/group.png" alt="">: 1</div>
+                    <div class="flex row items-center mx-4"><img class="mx-2" width="24" src="images/eye.png" alt=""> 1</div>
+                    <div class="flex row items-center"><img class="mx-2" width="24" src="images/group.png" alt=""> 1</div>
                   </div>
                 </div>
-                <!-- Summary -->
-                <hr class="my-4">
+
+
                 <div>
                     <h3 class="text-lg font-semibold mb-2">Summary</h3>
                     <p class="text-sm leading-relaxed">Results-oriented Senior Software Engineer with 20 years of experience
@@ -87,10 +107,21 @@ onMounted(async () => {
                 </div>
             </div>
         </div>
+
+        <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-md overflow-hidden rounded-2xl border-4 border-gray-400 my-20 py-10 px-5">
+
+        
+            <div class="col-md-4" v-for="article in postsStore.posts" :key="article.id">
+                <div class="card mb-4 box-shadow">
+
+                    <p class="card-text">{{ article.text }}</p>
+                    
+                    
+                </div>
+            </div>
+        
+        </div>
     </div>
-      <p class="leading-relaxed text-xl text-gray-900 mt-8">
-          We use VeilMail.io to <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://veilmail.io">hide email address from spammers</a>
-      </p>
 </template>
 
 <style>
