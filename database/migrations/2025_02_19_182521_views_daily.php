@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-   /**
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('views_stats', function (Blueprint $table) {
+        Schema::create('views_daily', function (Blueprint $table) {
             $table->string('key');
             $table->bigInteger('views')->default(0);
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('views_stats');
+        Schema::dropIfExists('views_daily');
     }
 };

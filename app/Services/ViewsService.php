@@ -1,32 +1,40 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
-
-use App\Models\Product;
+use App\Models\Views;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-//use App\Http\Requests\TaskStoreRequest;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
-class PageViewsService
+class ViewsService
 {
 
-    public function view(string $page)
-    {
-        // $views = session()->get("views", collect());
+    public function view(string $key)
+    {     
+        
+        $sessionViews = session()->get("views", collect());
 
-        // if (!$views->contains($page)) {
-        //     //можно добавить проверку через бд на наличие просмотра но надо ли?
+        //можно добавить проверку через бд на наличие просмотра но надо ли вкидывать столько нагрузки для такой простой задачи?
+        //if (!$sessionViews->contains($key)) {
+            
 
-        //     $views->push($page);
+            // $sessionViews->push($key);
 
-        //     session(['views' => $views]);
-        // }
+            // session(['views' => $sessionViews]);
+
+            $views = Views::firstOrCreate(['key' => $key]);
+            
+            $views->increment('count');
+
+            return $views->count;
+        //}
     }
+
+    
 }

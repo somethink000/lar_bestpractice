@@ -1,28 +1,38 @@
-<script setup>
-import { onMounted } from "vue";
-import { useAuthStore } from "@/stores/auth";
-import { usePostsStore } from "@/stores/posts";
+<script>
+    import { defineComponent } from 'vue';
+    import { useAuthStore } from "@/stores/auth";
+    import { usePostsStore } from "@/stores/posts";
+	import { mapActions, mapStores } from 'pinia'
 
 
-const authStore = useAuthStore();
-const postsStore = usePostsStore();
+    export default defineComponent({
+		components: {
 
-
-
-    
-    
-
-
-onMounted(async () => {
-
-    await postsStore.get();
-
-    await authStore.getUser();
-  
-});
-
-
-
+		},
+		data: () => ({
+			views: 0,
+			
+		}),
+		computed: {
+			...mapStores(useAuthStore, usePostsStore),	
+		},
+		mounted() {
+            
+            this.getViews();
+            
+            this.postsStore.get()
+            //this.authStore.getUser();
+		},
+		methods: {
+			
+            getViews() {
+                axios.get('/api/view/home')
+                    .then(res => {
+                        this.views = res.data;
+                    })
+            },
+		}
+	});
 
 </script>
 
@@ -53,8 +63,8 @@ onMounted(async () => {
                       Download pdf
                   </div>
                   <div class="flex row">
-                    <div class="flex row items-center mx-4"><img class="mx-2" width="24" src="images/eye.png" alt=""> 1</div>
-                    <div class="flex row items-center"><img class="mx-2" width="24" src="images/group.png" alt=""> 1</div>
+                    <div class="flex row items-center mx-4"><img class="mx-2" width="24" src="images/eye.png" alt="">1</div>
+                    <div class="flex row items-center"><img class="mx-2" width="24" src="images/group.png" alt="">{{ views }}</div>
                   </div>
                 </div>
 
