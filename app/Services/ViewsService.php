@@ -18,15 +18,15 @@ class ViewsService
     public function view(string $key)
     {     
         
-        $sessionViews = session()->get("views", collect());
+        //$sessionViews = session()->get("views", collect());
 
         //можно добавить проверку через бд на наличие просмотра но надо ли вкидывать столько нагрузки для такой простой задачи?
-        //if (!$sessionViews->contains($key)) {
+        // if (!$sessionViews->contains($key)) {
             
 
-            // $sessionViews->push($key);
+        //     $sessionViews->push($key);
 
-            // session(['views' => $sessionViews]);
+        //     session(['views' => $sessionViews]);
 
             $views = Views::firstOrCreate(['key' => $key]);
             

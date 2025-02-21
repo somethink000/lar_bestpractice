@@ -26,7 +26,7 @@ export const useAuthStore = defineStore("auth", {
       await this.getToken();
 
       try {
-        await axios.post("/login", {
+        await axios.post("/api/login", {
           email: data.email,
           password: data.password,
         });
@@ -41,7 +41,7 @@ export const useAuthStore = defineStore("auth", {
       this.authErrors = [];
       await this.getToken();
       try {
-        await axios.post("/register", {
+        await axios.post("/api/register", {
           name: data.name,
           email: data.email,
           password: data.password,
@@ -55,14 +55,14 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async handleLogout() {
-      await axios.post("/logout");
+      await axios.post("/api/logout");
       this.authUser = null;
     },
     async handleForgotPassword(email) {
       this.authErrors = [];
       this.getToken();
       try {
-        const response = await axios.post("/forgot-password", {
+        const response = await axios.post("/api/forgot-password", {
           email: email,
         });
         this.authStatus = response.data.status;
@@ -75,7 +75,7 @@ export const useAuthStore = defineStore("auth", {
     async handleResetPassword(resetData) {
       this.authErrors = [];
       try {
-        const response = await axios.post("/reset-password", resetData);
+        const response = await axios.post("/api/reset-password", resetData);
         this.authStatus = response.data.status;
       } catch (error) {
         if (error.response.status === 422) {
