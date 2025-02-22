@@ -22,9 +22,9 @@
             this.getViews();
             
             this.postsStore.get()
-            this.authStore.getUser();
+            //this.authStore.getUser();
 
-            this.listen();
+            //this.listen();
 		},
 		methods: {
 			

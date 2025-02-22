@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Views;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -15,26 +16,54 @@ use Illuminate\Database\Eloquent\Model;
 class ViewsService
 {
 
+    //можно добавить проверку через бд вместо сессий на наличие просмотра но надо ли вкидывать столько нагрузки для такой простой задачи?
     public function view(string $key)
-    {     
-        
-        //$sessionViews = session()->get("views", collect());
+    {
 
-        //можно добавить проверку через бд на наличие просмотра но надо ли вкидывать столько нагрузки для такой простой задачи?
-        // if (!$sessionViews->contains($key)) {
-            
+        $sessionViews = session()->get("views", collect());
 
-        //     $sessionViews->push($key);
+        //получаем все просмотры
+        $views = Views::firstOrCreate(['key' => $key]);
+        $lastViewDate = $sessionViews->pull($key);
+        //проверяем смотрел ли пользователь ресурс rкогда нибудь 
+        if (!$lastViewDate) {
 
-        //     session(['views' => $sessionViews]);
+            $sessionViews->put($key, Carbon::today());
 
-            $views = Views::firstOrCreate(['key' => $key]);
-            
+            session(['views' => $sessionViews]);
+
             $views->increment('count');
 
-            return $views->count;
-        //}
+            $this->incrementStatistics($key);
+
+
+            //проверяем смотрел ли пользователь ресурс сегодня для статистики посещений в день
+        } elseif (new Carbon($lastViewDate < Carbon::today())) {
+
+            $this->incrementStatistics($key);
+        }
+
+
+        return $views->count;
     }
 
-    
+
+    private function incrementStatistics(string $key)
+    {
+
+        //повторяющийся запрос
+        $viewQuery = DB::table('views_daily')->where(['key' => $key])->whereDate('created_at', Carbon::today());
+        // заполняем дневную статистику
+        if (!$viewQuery->exists()) {
+
+            DB::table('views_daily')->insert([
+                'key' => $key,
+                'views' => 1,
+                'created_at' => Carbon::today(),
+            ]);
+        } else {
+
+            $viewQuery->increment('views', 1);
+        }
+    }
 }
