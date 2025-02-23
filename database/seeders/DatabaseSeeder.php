@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         for ($i = 1; $i <= 4; $i++) {
             DB::table('posts')->insert([
+                'title' => Str::random(100),
                 'text' => Str::random(100),
+                'views' => rand(0, 400),
             ]);
         }
 

@@ -24,8 +24,10 @@ class ViewsService
 
         //получаем все просмотры
         $views = Views::firstOrCreate(['key' => $key]);
+
         $lastViewDate = $sessionViews->pull($key);
-        //проверяем смотрел ли пользователь ресурс rкогда нибудь 
+        
+        //проверяем смотрел ли пользователь ресурс когда нибудь 
         if (!$lastViewDate) {
 
             $sessionViews->put($key, Carbon::today());
@@ -37,7 +39,7 @@ class ViewsService
             $this->incrementStatistics($key);
 
 
-            //проверяем смотрел ли пользователь ресурс сегодня для статистики посещений в день
+        //проверяем смотрел ли пользователь ресурс сегодня для статистики последений в день
         } elseif (new Carbon($lastViewDate < Carbon::today())) {
 
             $this->incrementStatistics($key);

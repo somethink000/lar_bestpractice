@@ -22,8 +22,8 @@ export const usePostsStore = defineStore('posts', {
 
 
         async create(form) {
-            
-            return axios.post('http://localhost/api/post', form, {
+            console.log("eef");
+            return axios.post('/api/post', form, {
                 headers: {
                     "Content-type": "application/json"
                 }
@@ -40,7 +40,7 @@ export const usePostsStore = defineStore('posts', {
         },
 
         async show(id) {
-            axios.get('http://localhost/api/post/'+id)
+            axios.get('/api/post/'+id)
             .then(res => {
             
                 this.current = res.data;
@@ -50,7 +50,7 @@ export const usePostsStore = defineStore('posts', {
 
         async edit(form) {
 
-            axios.patch('http://localhost/api/post/' + this.current.id, form, {
+            axios.patch('/api/post/' + this.current.id, form, {
                 headers: {
                     "Content-type": "application/json"
                 }
@@ -72,7 +72,7 @@ export const usePostsStore = defineStore('posts', {
 
         async delete() {
             
-            axios.delete('http://localhost/api/post/' + this.current.id)
+            axios.delete('/api/post/' + this.current.id)
             .then(res => {
                 if (res) {
                     //удаление из масива чтобы не делать дополнительный запрос 
