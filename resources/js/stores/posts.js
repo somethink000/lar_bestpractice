@@ -7,7 +7,7 @@ export const usePostsStore = defineStore('posts', {
     
     state: () => ({
         posts: [ ],
-        current: {},
+        current: null,
     }),
 
     
@@ -17,6 +17,7 @@ export const usePostsStore = defineStore('posts', {
             axios.get('/api/post')
             .then(res => {
                 this.posts = res.data;
+                
             })
         },
 
@@ -48,7 +49,7 @@ export const usePostsStore = defineStore('posts', {
         },
         
 
-        async edit(form) {
+        async update(form) {
 
             axios.patch('/api/post/' + this.current.id, form, {
                 headers: {

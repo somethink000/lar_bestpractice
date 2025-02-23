@@ -151,8 +151,10 @@
         <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-md overflow-hidden rounded-2xl border-4 border-gray-400 my-20 py-10 px-5">
 
             <!-- Views Stats -->
-
-
+            <h2 class="text-2xl font-semibold">Views statistic example</h2>
+            <hr>
+            
+            
 
             <!-- POSTS -->
 

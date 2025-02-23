@@ -22,6 +22,10 @@
 		},
 		methods: {
 			
+            submit() {
+                this.postsStore.create(this.form);
+                this.$emit('close-boxform');
+            },
 		}
 	});
 
@@ -66,7 +70,7 @@
         <div aria-hidden="true" class="border-t border-gray-700 px-2"></div>
 
         <div class="grid grid-cols-1 place-items-center px-4 py-2">
-          <form noValidate class="space-y-4" @submit.prevent="postsStore.create(form)">
+          <form noValidate class="space-y-4" @submit.prevent="submit()">
             <div>
               <label htmlFor="Full Name" class="mb-2 text-gray-400 text-lg">Title<span class="text-red-600 inline-block p-1 text-sm">*</span></label>
               <input
@@ -80,14 +84,14 @@
             </div>
             <div>
               <label htmlFor="email" class="mb-2 text-gray-400 text-lg">Text<span class="text-red-600 inline-block p-1 text-sm">*</span></label>
-              <input
+              <textarea
                         id="email"
                         class="border p-3  border-gray-700 shadow-md placeholder:text-base focus:outline-none ease-in-out duration-300 rounded-lg w-full"
                         type="email"
                         placeholder="Email"
                         required
                         v-model="form.text"
-                      />
+                      ></textarea>
             </div>
 
 
@@ -97,9 +101,9 @@
                     <button type="button"
                             class="inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset dark:focus:ring-offset-0 min-h-[2.25rem] px-4 text-sm text-gray-800 bg-white border-gray-300 hover:bg-gray-50 focus:ring-primary-600 focus:text-primary-600 focus:bg-primary-50 focus:border-primary-600 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-600 dark:hover:border-gray-500 dark:text-gray-200 dark:focus:text-primary-400 dark:focus:border-primary-400 dark:focus:bg-gray-800">
                             Cancel
-                            </button>
+                    </button>
 
-                    <button type="submit"
+                    <button type="submit" @click="submit()"
                             class="inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset dark:focus:ring-offset-0 min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-[#4d1b80] hover:bg-[#7127BA] focus:bg-[#11071F] focus:ring-offset-[#11071F]">
 
                             <span class="flex items-center gap-1">
@@ -107,7 +111,7 @@
                                 Send
                                 </span>
                             </span>
-                            </button>
+                    </button>
                 </div>
             </div>
 
