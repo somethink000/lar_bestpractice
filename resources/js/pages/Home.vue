@@ -4,16 +4,23 @@
 	import { mapStores } from 'pinia'
 
     import Posts from '@/components/Home/Posts.vue'
+    import Stats from '@/components/Stats.vue';
+    import axios from 'axios';
+
+    
 
     export default defineComponent({ 
 		components: {
             Posts,
+            Stats,
 		},
 		data: () => ({
 			views: 0,
 			count: 0,
+            jokes: {},
             users: {},
-		}),
+            
+		}), 
 		computed: {
 			...mapStores(useAuthStore),	
 		},
@@ -24,9 +31,20 @@
             //this.authStore.getUser();
 
             //this.listen();
+
+            axios.get('/api/joke')
+            .then(res => {
+                this.jokes = res.data;
+                
+            })
+
+
 		},
 		methods: {
 			
+
+
+
             getViews() {
                 axios.get('/api/view/home')
                     .then(res => {
@@ -152,16 +170,19 @@
 
             <!-- Views Stats -->
             <h2 class="text-2xl font-semibold">Views statistic example</h2>
-            <hr>
+            <hr class="mb-5">
             
-            
-
+            <div class="h-60">
+                <Stats />
+            </div>
             <!-- POSTS -->
 
-            <h2 class="text-2xl font-semibold">Crud example</h2>
-            <hr>
+            <h2 class="text-2xl font-semibold mt-20">Crud example</h2>
+            <hr class="mb-5">
             <Posts/>
             
+
+            {{ jokes }}
         </div>
     </div>
 </template>

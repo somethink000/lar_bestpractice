@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CommentsController;
+use App\Http\Controllers\Api\JokeController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ViewsController;
 use Illuminate\Http\Request;
@@ -12,13 +13,15 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
 Route::resource('post', PostController::class)
 ->except([
     'create', 'edit',
 ]);
 
+Route::resource('joke', JokeController::class)
+->except([
+    'create', 'edit', 'update', 'delete', 'show', 'store',
+]);
 
 Route::group([ 'prefix'=>'view'], function(){
     Route::get('/home',[ViewsController::class, 'viewHome']);

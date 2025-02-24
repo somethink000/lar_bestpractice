@@ -1,16 +1,21 @@
 <script>
+
+    
     import { defineComponent } from 'vue';
     import { usePostsStore } from "@/stores/posts";
 	import { mapStores } from 'pinia'
     import moment from 'moment';
-
+    
     import CreatePostForm from './CreatePostForm.vue';
     import ProductCard from './ProductCard.vue';
+
+    
 
     export default defineComponent({
 		components: {
             CreatePostForm,
             ProductCard,
+
 		},
 		data: () => ({
             createForm: false,
@@ -35,12 +40,7 @@
             getFromDate(date){
                 return moment(date).fromNow();
             },
-			// onCreatedBox(e) {
-			// 	e.tasks = [];
-			// 	this.boxes.set( e.id, e);
-			// 	this.closeBoxForm();
-			// },
-            
+			
 		}
 	});
 
