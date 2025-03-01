@@ -49,6 +49,11 @@ class ViewsService
         return $views->count;
     }
 
+    public function getStatistics(string $key) {
+
+    }
+
+
 
     private function incrementStatistics(string $key)
     {

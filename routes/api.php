@@ -23,6 +23,6 @@ Route::resource('joke', JokeController::class)
     'create', 'edit', 'update', 'delete', 'show', 'store',
 ]);
 
-Route::group([ 'prefix'=>'view'], function(){
-    Route::get('/home',[ViewsController::class, 'viewHome']);
+Route::group([ 'prefix'=>'views'], function(){
+    Route::get('/home',[ViewsController::class, 'home']);
 });

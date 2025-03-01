@@ -23,7 +23,7 @@ export const usePostsStore = defineStore('posts', {
 
 
         async create(form) {
-            console.log("eef");
+            
             return axios.post('/api/post', form, {
                 headers: {
                     "Content-type": "application/json"

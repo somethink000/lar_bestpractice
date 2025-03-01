@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ViewsService;
 use Illuminate\Http\Request;
 
+  //TODO сделать через констракт
 class ViewsController extends Controller
 {
 
@@ -13,11 +14,18 @@ class ViewsController extends Controller
         protected ViewsService $viewsService,
     ) {}
 
-    public function viewHome() {
+  
+    public function home(int $id) {
+        $key = 'home';
+        $views = [];
 
-        $views = $this->viewsService->view("home");
+        $views["count"] = $this->viewsService->view($key);
         
-        return $views;
+        if ($id) {
+            $views["stats"] = $this->viewsService->getStatistics($key); 
+        }
 
+        return $views;
     }
+    
 }

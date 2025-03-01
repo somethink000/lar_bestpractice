@@ -46,7 +46,7 @@
 
 
             getViews() {
-                axios.get('/api/view/home')
+                axios.get('/api/views/home/'+1)
                     .then(res => {
                         this.views = res.data;
                     })
